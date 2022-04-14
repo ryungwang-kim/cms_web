@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+
+	
+	<select id="selMainMenu" resultType="map">
+		/* getBoardList */
+		SELECT * FROM D_CATEGORY WHERE USE_YN = 'Y' ORDER BY LG_SORT ASC
+	</select>
+	
+	<select id="selMdMenu" resultType="map">
+		/* getBoardList */
+		SELECT * FROM d_md_category where use_yn = 'Y' ORDER BY MD_SORT ASC
+	</select>
+	
+	<select id="selSmMenu" resultType="map">
+		/* getBoardList */
+		SELECT * FROM d_sm_category where use_yn = 'Y' ORDER BY SM_SORT ASC
+	</select>
+</mapper>
