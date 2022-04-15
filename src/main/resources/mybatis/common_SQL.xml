@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common">
+
+	<select id="selLoginMember" resultType="map" parameterType="map">
+		SELECT * FROM PUBLIC.D_MEM_INFO WHERE MEM_ID = #{memId}
+	</select>
+	
+	<select id="selConnectLog" resultType="map">
+		SELECT * FROM WEB.DJ_CONNECT_LOG
+	</select>
+	
+	<select id="insConnectLog" parameterType="map" resultType="String">
+		INSERT INTO 
+			WEB.DJ_CONNECT_LOG(ip, mem_id, log_type)
+		VALUES 
+			(#{ip}, #{memId}, #{logType})
+	</select>
+	
+	<select id="selConnectNowLog" resultType="int">
+		SELECT LOG_NO FROM WEB.DJ_CONNECT_LOG
+		ORDER BY LOG_NO DESC LIMIT 1
+	</select>
+	
+	<update id="updLogoutLog" parameterType="int">
+		UPDATE 
+			WEB.DJ_CONNECT_LOG
+		SET 
+			LOGOUT_TIME = NOW()
+		WHERE 
+			LOG_NO = #{logNo}
+	</update>
+</mapper>

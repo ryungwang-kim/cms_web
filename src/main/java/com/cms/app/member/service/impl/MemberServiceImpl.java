@@ -19,12 +19,6 @@ public class MemberServiceImpl implements MemberService{
 	public List<Map<String, Object>> selMemberAll() {
 		return memberRepository.selMemberAll();
 	}
-
-	@Override
-	public Map<String, Object> selLoginMember(Map<String, Object> param) {
-		return memberRepository.selLoginMember(param);
-	}
-
 }
 	
 	

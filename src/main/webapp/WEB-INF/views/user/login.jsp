@@ -42,7 +42,7 @@
 			<tr>
 				<td style="text-align: center;" colspan="2">
 					<input id="btn" type="button" onclick="loginChe();" value="로그인">
-					<input type="submit" onclick="location.href='/member/join_'" value="회원가입"></input>
+					<input type="submit" onclick="location.href='/user/join.do'" value="회원가입"></input>
 				</td>
 			</tr>
 		</table>
@@ -55,7 +55,7 @@
 				}
 				
 			$.ajax({
-				url:"/member/loginAction.do",
+				url:"/user/loginAction.do",
 				type:"POST",
 				data: data,
 				dataType:"json",

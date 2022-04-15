@@ -5,16 +5,16 @@
 	
 	<select id="selMainMenu" resultType="map">
 		/* getBoardList */
-		SELECT * FROM D_CATEGORY WHERE USE_YN = 'Y' ORDER BY LG_SORT ASC
+		SELECT * FROM PUBLIC.D_CATEGORY WHERE USE_YN = 'Y' ORDER BY LG_SORT ASC
 	</select>
 	
 	<select id="selMdMenu" resultType="map">
 		/* getBoardList */
-		SELECT * FROM d_md_category where use_yn = 'Y' ORDER BY MD_SORT ASC
+		SELECT * FROM PUBLIC.d_md_category where use_yn = 'Y' ORDER BY MD_SORT ASC
 	</select>
 	
 	<select id="selSmMenu" resultType="map">
 		/* getBoardList */
-		SELECT * FROM d_sm_category where use_yn = 'Y' ORDER BY SM_SORT ASC
+		SELECT * FROM PUBLIC.d_sm_category where use_yn = 'Y' ORDER BY SM_SORT ASC
 	</select>
 </mapper>

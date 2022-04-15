@@ -13,6 +13,4 @@ import org.springframework.stereotype.Service;
 public interface MemberService {
 	
 	List<Map<String, Object>> selMemberAll();
-	
-	Map<String, Object> selLoginMember(Map<String, Object> param);
 }

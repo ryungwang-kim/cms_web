@@ -6,15 +6,23 @@
 	<style>
 	</style>
 <title>Mainpage</title>
+<script type="text/javascript" src="/resources/jquery/jquery-1.11.1.js"></script>
 </head>
 <body>
 	<h2>메인 페이지</h2>
 	<div style="text-align: right;">
 		<button type="button" onclick="location.href='/board/boardList.do'" class="btn">게시판</button>
 		<button type="button" onclick="location.href='/member/memberList.do'" class="btn">회원리스트</button>
-		<button type="button" onclick="location.href='/member/login.do'" class="btn">로그인</button>
+		<c:choose>
+			<c:when test="${logNo ne null }">
+				<button type="button" onclick="location.href='/user/logout.do'"  class="btn">로그아웃${logNo}</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" onclick="location.href='/user/login.do'" class="btn">로그인</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
-			<div style="text-align: center;">
+	<div style="text-align: center;">
 		<c:forEach var ="main" items="${mainMenu}" varStatus="status">	
 				<div class="bg_ct" style="display: inline-block;border: 1px solid black;">${main.lg_cg_nm}
 				<c:forEach var ="md" items="${mdMenu}" varStatus="status">
@@ -29,6 +37,6 @@
 				</c:forEach>
 				</div>
 	   	</c:forEach>
-		   	</div>
+   	</div>
 </body>
 </html>

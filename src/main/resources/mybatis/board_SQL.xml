@@ -5,12 +5,12 @@
 	
 	<select id="getBoardList" resultType="map">
 		/* getBoardList */
-		SELECT * FROM d_board
+		SELECT * FROM PUBLIC.d_board
 	</select>
 	
 	<insert id="insertboard" parameterType="map">
 		/* boardIns */
-		INSERT INTO d_board(
+		INSERT INTO PUBLIC.d_board(
 			bd_title, 
 			bd_content, 
 			bd_writer, 

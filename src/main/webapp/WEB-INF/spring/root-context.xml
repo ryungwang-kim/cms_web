@@ -4,16 +4,6 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"
 		xmlns:context="http://www.springframework.org/schema/context">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- mybatis 연결 설정 하는 부분 -->
-	<!-- <bean id ="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="org.mariadb.jdbc.Driver" />
-		<property name="url" value="jdbc:mariadb://localhost:3306/test_web" />
-		<property name="username" value="root" />
-		<property name="password" value="mysql@1234" />
-	</bean> -->
-	
 	<!-- PostgresSQL -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver"/>
@@ -22,22 +12,12 @@
 		<property name="password" value=""/>
     </bean>
 
-
-	<!-- mybatis-spring 라이브러리 --> 
-	<!-- 2.sqlSession 생성을 담당 --> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
-		<!-- setter 개념 --> <!-- ref="dataSource" 
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">의 id가 옴 실제 실행되는 것은 dataSource --> 
 		<property name="dataSource" ref="dataSource" />
-		<!-- sql 코드가 들어있는 xml 문서 --> 
-		<!-- /**/ -> mapper를 기준으로 하위 폴더 같은 레벨로 참조 , *Mapper.xml로 끝나는 파일 *에는 아무거나 상관없음 --> 
 		<property name="mapperLocations" value="classpath:mybatis/*.xml" />
 	</bean> 
 	
-	<!-- ★ 3.실제 클래스에 주입 --> <!-- xml문서에서 sql구문을 읽어와서 실행을 담당하는 기능 제공 --> 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"> 
-		<!-- constructor-arg : 생성자 메소드 --> <!-- public SqlSessionTemplate(SqlSessionFactory sqlSessionFactory) -> name --> 
-		<!-- ref="sqlSessionFactory" -> bean id="sqlSessionFactory" --> 
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/> 
 	</bean> 
 </beans>

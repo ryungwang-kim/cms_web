@@ -43,7 +43,7 @@
 </head>
 <body>
 <div class ="join">
-	<form  method="post" action="/content/userins">
+	<form  method="post" action="/user/userins">
 		<table calss="table_join">
 		<thead>
 			<tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>

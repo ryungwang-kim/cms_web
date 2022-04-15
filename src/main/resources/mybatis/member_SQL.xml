@@ -3,11 +3,6 @@
 <mapper namespace="member">
 
 	<select id="selMemberAll" resultType="map">
-		SELECT * FROM D_MEM_INFO
+		SELECT * FROM PUBLIC.D_MEM_INFO
 	</select>
-	
-	<select id="selLoginMember" resultType="map" parameterType="map">
-		SELECT * FROM D_MEM_INFO WHERE MEM_ID = #{memId}
-	</select>
-	
 </mapper>
