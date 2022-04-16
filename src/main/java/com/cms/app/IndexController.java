@@ -1,5 +1,6 @@
 package com.cms.app;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +81,7 @@ public class IndexController {
 			djConnectMap.put("memId", loginMap.get("mem_id"));
 			djConnectMap.put("ip", request.getRemoteAddr());
 			djConnectMap.put("logType", "login");
+			djConnectMap.put("loginTime", new Date());
 			
 			session.setAttribute("memId", loginMap.get("mem_Id"));
 			session.setAttribute("logNo", loginService.insConnectLog(djConnectMap));
@@ -91,9 +93,11 @@ public class IndexController {
 		return resultMap;
     }
 	@RequestMapping("/user/logout.do")
-	public String logout(HttpSession session) {
+	public String logout(@RequestParam Map<String, Object> param, HttpSession session) {
+		param.put("logNo", Long.parseLong(session.getAttribute("logNo").toString()));
+		param.put("logoutTime", new Date());
+		loginService.updLogoutLog(param);
 		
-		loginService.updLogoutLog(Integer.parseInt(session.getAttribute("logNo").toString()));
 		session.invalidate();
 		
 		return "redirect:/index.do";

@@ -21,5 +21,5 @@ import com.cms.app.common.config.Sha256Config;
 public interface LoginService {
 	Map<String, Object> selLoginMember(Map<String, Object> param);
 	int insConnectLog(Map<String, Object> param);
-	void updLogoutLog(int logNo);
+	void updLogoutLog(Map<String, Object> param);
 }

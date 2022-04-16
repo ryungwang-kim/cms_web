@@ -7,26 +7,27 @@
 	</select>
 	
 	<select id="selConnectLog" resultType="map">
-		SELECT * FROM WEB.DJ_CONNECT_LOG
+		SELECT * FROM WEB.D_WEB_LOG
 	</select>
 	
 	<select id="insConnectLog" parameterType="map" resultType="String">
 		INSERT INTO 
-			WEB.DJ_CONNECT_LOG(ip, mem_id, log_type)
+			WEB.D_WEB_LOG(ip, mem_id, login_time, log_type)
 		VALUES 
-			(#{ip}, #{memId}, #{logType})
+			(#{ip}, #{memId}, #{loginTime}, #{logType})
 	</select>
 	
 	<select id="selConnectNowLog" resultType="int">
-		SELECT LOG_NO FROM WEB.DJ_CONNECT_LOG
+		SELECT LOG_NO FROM WEB.D_WEB_LOG
 		ORDER BY LOG_NO DESC LIMIT 1
 	</select>
 	
-	<update id="updLogoutLog" parameterType="int">
+	<update id="updLogoutLog" parameterType="map">
 		UPDATE 
-			WEB.DJ_CONNECT_LOG
+			WEB.D_WEB_LOG
 		SET 
-			LOGOUT_TIME = NOW()
+			log_type = #{logType},
+			logout_time = #{logoutTime}
 		WHERE 
 			LOG_NO = #{logNo}
 	</update>

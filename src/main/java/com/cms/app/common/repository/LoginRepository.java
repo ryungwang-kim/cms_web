@@ -19,8 +19,8 @@ public class LoginRepository extends AbstractDAO{
 		return (int) selectOne("common.selConnectNowLog");
 	}
 	
-	public void updConnectLog(Object logNo){
-		update("common.updLogoutLog", logNo);
+	public void updConnectLog(Map<String, Object> param){
+		update("common.updLogoutLog", param);
 	}
 	
 }

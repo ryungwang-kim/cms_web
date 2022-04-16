@@ -47,10 +47,7 @@ public class SessionConfig implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-    	HttpSession session = se.getSession();
     	sessionUserCounter ++;
-	    logger.error("\n\tSESSION CREATED : {}, TOTAL ACCESSER : {}", session.getId(), sessionUserCounter);
-	    
         sessions.put(se.getSession().getId(), se.getSession());
     }
 
@@ -59,9 +56,6 @@ public class SessionConfig implements HttpSessionListener {
     	// 세션이 소멸될 때
     	sessionUserCounter--;
     	if( sessionUserCounter < 0 ) sessionUserCounter = 0;
-    	HttpSession session = se.getSession();
-    	logger.error("\n\tSESSION DESTROYED : {}, TOTAL ACCESSER : {}", session.getId(), sessionUserCounter);
-        
         if(sessions.get(se.getSession().getId()) != null){
             sessions.get(se.getSession().getId()).invalidate();
             sessions.remove(se.getSession().getId());

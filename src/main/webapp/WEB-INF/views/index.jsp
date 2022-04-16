@@ -15,7 +15,7 @@
 		<button type="button" onclick="location.href='/member/memberList.do'" class="btn">회원리스트</button>
 		<c:choose>
 			<c:when test="${logNo ne null }">
-				<button type="button" onclick="location.href='/user/logout.do'"  class="btn">로그아웃${logNo}</button>
+				<button type="button" onclick="location.href='/user/logout.do?logType=logout'"  class="btn">로그아웃</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" onclick="location.href='/user/login.do'" class="btn">로그인</button>

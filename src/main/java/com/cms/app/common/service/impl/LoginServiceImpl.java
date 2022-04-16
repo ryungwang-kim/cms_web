@@ -28,8 +28,8 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public void updLogoutLog(int logNo) {
-		loginRepository.updConnectLog(logNo);
+	public void updLogoutLog(Map<String, Object> param) {
+		loginRepository.updConnectLog(param);
 	}
 
 }
