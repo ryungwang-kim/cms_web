@@ -6,25 +6,32 @@
 		SELECT * FROM PUBLIC.D_MEM_INFO WHERE MEM_ID = #{memId}
 	</select>
 	
-	<select id="selConnectLog" resultType="map">
-		SELECT * FROM WEB.D_WEB_LOG
+	<select id="selConnectLog" resultType="int" parameterType="map">
+		select count(*) from WEB.D_WEB_CONNECT_LOG WHERE MEM_NO = #{mem_no}
 	</select>
 	
-	<select id="insConnectLog" parameterType="map" resultType="String">
+	<select id="insConnectLog" parameterType="map">
 		INSERT INTO 
-			WEB.D_WEB_LOG(ip, mem_id, login_time, log_type)
+			WEB.D_WEB_CONNECT_LOG(MEM_NO, MEM_ID, REG_DT)
 		VALUES 
-			(#{ip}, #{memId}, #{loginTime}, #{logType})
+			(#{memNo}, #{memId}, #{regDt})
 	</select>
 	
-	<select id="selConnectNowLog" resultType="int">
-		SELECT LOG_NO FROM WEB.D_WEB_LOG
+	<select id="insConnectLogDetail" parameterType="map">
+		INSERT INTO 
+			WEB.D_WEB_CONNECT_LOG_DETAIL(ip, mem_no, mem_id, login_time, log_type)
+		VALUES 
+			(#{ip}, #{memNo}, #{memId}, #{loginTime}, #{logType})
+	</select>
+	
+	<select id="selConnectDetailNowLog" resultType="int">
+		SELECT LOG_NO FROM WEB.D_WEB_CONNECT_LOG_DETAIL
 		ORDER BY LOG_NO DESC LIMIT 1
 	</select>
 	
-	<update id="updLogoutLog" parameterType="map">
+	<update id="updLogoutLogDetil" parameterType="map">
 		UPDATE 
-			WEB.D_WEB_LOG
+			WEB.D_WEB_CONNECT_LOG_DETAIL
 		SET 
 			log_type = #{logType},
 			logout_time = #{logoutTime}

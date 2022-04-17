@@ -78,13 +78,18 @@ public class IndexController {
 		
 		if(chk == true) {
 			Map<String, Object> djConnectMap = new HashMap<String, Object>();
+			djConnectMap.put("memNo", loginMap.get("mem_no"));
 			djConnectMap.put("memId", loginMap.get("mem_id"));
+			djConnectMap.put("regDt", new Date());
+			if(loginService.selConnectLog(loginMap) == 0) {
+				loginService.insConnectLog(djConnectMap);
+			}
+			
 			djConnectMap.put("ip", request.getRemoteAddr());
 			djConnectMap.put("logType", "login");
 			djConnectMap.put("loginTime", new Date());
-			
-			session.setAttribute("memId", loginMap.get("mem_Id"));
-			session.setAttribute("logNo", loginService.insConnectLog(djConnectMap));
+			session.setAttribute("memId", loginMap.get("mem_id"));
+			session.setAttribute("logNo", loginService.insConnectLogDetail(djConnectMap));
 		}
 		
 		resultMap.put("check", chk);
@@ -96,7 +101,7 @@ public class IndexController {
 	public String logout(@RequestParam Map<String, Object> param, HttpSession session) {
 		param.put("logNo", Long.parseLong(session.getAttribute("logNo").toString()));
 		param.put("logoutTime", new Date());
-		loginService.updLogoutLog(param);
+		loginService.updLogoutLogDetil(param);
 		
 		session.invalidate();
 		

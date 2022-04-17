@@ -14,13 +14,21 @@ public class LoginRepository extends AbstractDAO{
 		return (Map<String, Object>) selectOne("common.selLoginMember", param);
 	}
 	
-	public int insConnectLog(Map<String, Object> param){
-		insert("common.insConnectLog", param);
-		return (int) selectOne("common.selConnectNowLog");
+	public int selConnectLog(Map<String, Object> param) {
+		return (int) selectOne("common.selConnectLog", param);
 	}
 	
-	public void updConnectLog(Map<String, Object> param){
-		update("common.updLogoutLog", param);
+	public void insConnectLog(Map<String, Object> param){
+		insert("common.insConnectLog", param);
+	}
+	
+	public int insConnectLogDetail(Map<String, Object> param){
+		insert("common.insConnectLogDetail", param);
+		return (int) selectOne("common.selConnectDetailNowLog");
+	}
+	
+	public void updLogoutLogDetil(Map<String, Object> param){
+		update("common.updLogoutLogDetil", param); 
 	}
 	
 }
